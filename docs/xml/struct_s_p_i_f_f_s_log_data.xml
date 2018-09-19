@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="struct_s_p_i_f_f_s_log_data" kind="struct" language="C++" prot="public">
+    <compoundname>SPIFFSLogData</compoundname>
+    <includes refid="_s_p_i_f_f_s_logger_8h" local="no">SPIFFSLogger.h</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_s_p_i_f_f_s_log_data_1a692b3adc90780d9388d6833d2170400c" prot="public" static="no" mutable="no">
+        <type>time_t</type>
+        <definition>time_t SPIFFSLogData&lt; T &gt;::timestampUTC</definition>
+        <argsstring></argsstring>
+        <name>timestampUTC</name>
+        <briefdescription>
+<para>creation time in UTC </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/SPIFFSLogger.h" line="37" column="1" bodyfile="src/SPIFFSLogger.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_s_p_i_f_f_s_log_data_1a071121efdc7f6d95adc4dcdf736a84ec" prot="public" static="no" mutable="no">
+        <type>T</type>
+        <definition>T SPIFFSLogData&lt; T &gt;::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+<para>data of type T </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/SPIFFSLogger.h" line="38" column="1" bodyfile="src/SPIFFSLogger.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Represents a data element as stored in SPIFFS, along with the creation timestamp. </para>    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type to store, e.g. a struct. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <location file="src/SPIFFSLogger.h" line="36" column="1" bodyfile="src/SPIFFSLogger.h" bodystart="35" bodyend="39"/>
+    <listofallmembers>
+      <member refid="struct_s_p_i_f_f_s_log_data_1a071121efdc7f6d95adc4dcdf736a84ec" prot="public" virt="non-virtual"><scope>SPIFFSLogData</scope><name>data</name></member>
+      <member refid="struct_s_p_i_f_f_s_log_data_1a692b3adc90780d9388d6833d2170400c" prot="public" virt="non-virtual"><scope>SPIFFSLogData</scope><name>timestampUTC</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
