@@ -184,6 +184,9 @@ size_t SPIFFSLogger<T>::readRows(SPIFFSLogData<T> *output, time_t date, size_t s
 
     File f = SPIFFS.open(path, "r");
     maxCount = min(maxCount, f.size() / sizeof(SPIFFSLogData<T>) - startIdx);
+    if (maxCount == 0)
+        return maxCount;
+
     f.seek(startIdx * sizeof(SPIFFSLogData<T>));
     f.read((uint8_t *)output, maxCount * sizeof(SPIFFSLogData<T>));
     f.close();
