@@ -17,7 +17,7 @@ Clone the library into your libraries folder, or download the zip and extract it
 `class `[`SPIFFSLogger`](#class_s_p_i_f_f_s_logger) | Minimal class template for binary data logging in ESP8266 SPIFFS.
 `struct `[`SPIFFSLogData`](#struct_s_p_i_f_f_s_log_data) | Represents a data element as stored in SPIFFS, along with the creation timestamp.
 
-## class `SPIFFSLogger` 
+## class `SPIFFSLogger<T>` 
 
 Minimal class template for binary data logging in ESP8266 SPIFFS.
 
@@ -145,7 +145,7 @@ Updates the current path to match today's date.
 
 Deletes files older than the defined age limit.
 
-## struct `SPIFFSLogData` 
+## struct `SPIFFSLogData<T>` 
 
 Represents a data element as stored in SPIFFS, along with the creation timestamp.
 
