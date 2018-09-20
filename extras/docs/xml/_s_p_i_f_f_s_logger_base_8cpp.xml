@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="_s_p_i_f_f_s_logger_base_8cpp" kind="file" language="C++">
+    <compoundname>SPIFFSLoggerBase.cpp</compoundname>
+    <includes refid="_s_p_i_f_f_s_logger_base_8h" local="yes">SPIFFSLoggerBase.h</includes>
+    <incdepgraph>
+      <node id="6">
+        <label>src/SPIFFSLoggerBase.cpp</label>
+        <link refid="_s_p_i_f_f_s_logger_base_8cpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>FS.h</label>
+      </node>
+      <node id="7">
+        <label>SPIFFSLoggerBase.h</label>
+        <link refid="_s_p_i_f_f_s_logger_base_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>time.h</label>
+      </node>
+      <node id="8">
+        <label>Arduino.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_s_p_i_f_f_s_logger_base_8cpp_1af70a7c4bf0e665786ae633f14c7b351f" prot="public" static="no" mutable="no">
+        <type>const char _logFilenameFormat []</type>
+        <definition>const char _logFilenameFormat [] PROGMEM</definition>
+        <argsstring></argsstring>
+        <name>PROGMEM</name>
+        <initializer>= &quot;%s/%d%02d%02d&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/SPIFFSLoggerBase.cpp" line="4" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_s_p_i_f_f_s_logger_base_8h" kindref="compound">SPIFFSLoggerBase.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>internal<sp/>strings<sp/>stored<sp/>in<sp/>flash<sp/>for<sp/>efficiency</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>_logFilenameFormat[]<sp/><ref refid="_s_p_i_f_f_s_logger_base_8cpp_1af70a7c4bf0e665786ae633f14c7b351f" kindref="member">PROGMEM</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;%s/%d%02d%02d&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><ref refid="class_s_p_i_f_f_s_logger_base_1ace02cadd2e608c940728ae9f5242bbcc" kindref="member">SPIFFSLoggerBase::SPIFFSLoggerBase</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*directory,<sp/>uint16_t<sp/>daysToKeep,<sp/>uint16_t<sp/>processInterval)</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>_daysToKeep(daysToKeep),<sp/>_processInterval(processInterval)</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy(this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a829da5d8bf3d83ed24e608bb60fc623c" kindref="member">_directory</ref>,<sp/>directory,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a829da5d8bf3d83ed24e608bb60fc623c" kindref="member">_directory</ref>)<sp/>-<sp/>1);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_s_p_i_f_f_s_logger_base_1ad2270960852a999b0340fa4eab50f063" kindref="member">SPIFFSLoggerBase::init</ref>()</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a22fdd2b540717853ae403edbc0ed1b7f" kindref="member">process</ref>();</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_s_p_i_f_f_s_logger_base_1a22fdd2b540717853ae403edbc0ed1b7f" kindref="member">SPIFFSLoggerBase::process</ref>()</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>currentMillis<sp/>=<sp/>millis();</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(currentMillis<sp/>-<sp/>this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1ac1b33a4c97b2a45b2b178a261ebbb12c" kindref="member">_lastProcess</ref><sp/>&gt;<sp/>this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a517fa4d3854283ba7b2dba9bf0d09c84" kindref="member">_processInterval</ref><sp/>||<sp/>this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a978f0a636ce4d7a7f1640df124cc25ff" kindref="member">_processNow</ref>)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>time_t<sp/>now<sp/>=<sp/>time(</highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>time_t<sp/>today<sp/>=<sp/>now<sp/>/<sp/>86400<sp/>*<sp/>86400;<sp/></highlight><highlight class="comment">//<sp/>remove<sp/>the<sp/>time<sp/>part</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a77a967ae68a680dea5a647200ba49815" kindref="member">_today</ref><sp/>!=<sp/>today)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="comment">//<sp/>we<sp/>have<sp/>switched<sp/>to<sp/>another<sp/>day,<sp/>let&apos;s<sp/>run<sp/>the<sp/>required<sp/>updates</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a77a967ae68a680dea5a647200ba49815" kindref="member">_today</ref><sp/>=<sp/>today;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1aa5679e47e144e591b5fa90fb31b65cbd" kindref="member">_updateCurPath</ref>();</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a2e9e45428e1ffbe989dd7679c5def4fe" kindref="member">_runRotation</ref>();</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1ac1b33a4c97b2a45b2b178a261ebbb12c" kindref="member">_lastProcess</ref><sp/>=<sp/>currentMillis;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a978f0a636ce4d7a7f1640df124cc25ff" kindref="member">_processNow</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_s_p_i_f_f_s_logger_base_1abfba26125f8b32b4c8e2e3d29d65b31f" kindref="member">SPIFFSLoggerBase::_pathFromDate</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*output,<sp/>time_t<sp/>date)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(date<sp/>&lt;=<sp/>0)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>date<sp/>=<sp/>this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a77a967ae68a680dea5a647200ba49815" kindref="member">_today</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">tm<sp/>*tinfo<sp/>=<sp/>gmtime(&amp;date);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>sprintf_P(output,</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_logFilenameFormat,</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a829da5d8bf3d83ed24e608bb60fc623c" kindref="member">_directory</ref>,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1900<sp/>+<sp/>tinfo-&gt;tm_year,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tinfo-&gt;tm_mon<sp/>+<sp/>1,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tinfo-&gt;tm_mday);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_s_p_i_f_f_s_logger_base_1aa5679e47e144e591b5fa90fb31b65cbd" kindref="member">SPIFFSLoggerBase::_updateCurPath</ref>()</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_s_p_i_f_f_s_logger_base_1abfba26125f8b32b4c8e2e3d29d65b31f" kindref="member">SPIFFSLoggerBase::_pathFromDate</ref>(this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a7f79553c53c7b5b6c87aaaa104d5a1e3" kindref="member">_curPath</ref>,<sp/>this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a77a967ae68a680dea5a647200ba49815" kindref="member">_today</ref>);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_s_p_i_f_f_s_logger_base_1a2e9e45428e1ffbe989dd7679c5def4fe" kindref="member">SPIFFSLoggerBase::_runRotation</ref>()</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>dirLen<sp/>=<sp/>strlen(this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a829da5d8bf3d83ed24e608bb60fc623c" kindref="member">_directory</ref>);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>Dir<sp/>tempDir<sp/>=<sp/>SPIFFS.openDir(this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a829da5d8bf3d83ed24e608bb60fc623c" kindref="member">_directory</ref>);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(tempDir.next())</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*dateStart<sp/>=<sp/>tempDir.fileName().c_str()<sp/>+<sp/>dirLen<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>time_t<sp/>midnight<sp/>=<sp/><ref refid="class_s_p_i_f_f_s_logger_base_1a0f0bc03eb433c0f2a9dd537e8be92892" kindref="member">SPIFFSLoggerBase::_filenameToDate</ref>(dateStart);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>file<sp/>is<sp/>too<sp/>old<sp/>and,<sp/>if<sp/>so,<sp/>delete<sp/>it</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(midnight<sp/>&lt;<sp/>(this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a77a967ae68a680dea5a647200ba49815" kindref="member">_today</ref><sp/>-<sp/>this-&gt;<ref refid="class_s_p_i_f_f_s_logger_base_1a8feb62f012879aca79d600cf217c2098" kindref="member">_daysToKeep</ref><sp/>*<sp/>86400))</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SPIFFS.remove(tempDir.fileName());</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal">time_t<sp/><ref refid="class_s_p_i_f_f_s_logger_base_1a0f0bc03eb433c0f2a9dd537e8be92892" kindref="member">SPIFFSLoggerBase::_filenameToDate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*filename)</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">tm<sp/>tm<sp/>=<sp/>{0};</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>datePart[5]<sp/>=<sp/>{0};</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy(datePart,<sp/>filename,<sp/>4);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>tm.tm_year<sp/>=<sp/>atoi(datePart)<sp/>-<sp/>1900;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy(datePart,<sp/>filename<sp/>+<sp/>4,<sp/>2);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>datePart[2]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>tm.tm_mon<sp/>=<sp/>atoi(datePart)<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy(datePart,<sp/>filename<sp/>+<sp/>6,<sp/>2);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>tm.tm_mday<sp/>=<sp/>atoi(datePart);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_s_p_i_f_f_s_logger_base_1ab520631b16a4bd22e55cada2781287a8" kindref="member">SPIFFSLoggerBase::_timegm</ref>(&amp;tm)<sp/>/<sp/>86400<sp/>*<sp/>86400;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal">time_t<sp/><ref refid="class_s_p_i_f_f_s_logger_base_1ab520631b16a4bd22e55cada2781287a8" kindref="member">SPIFFSLoggerBase::_timegm</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/>tm<sp/>*tm)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">tm<sp/>start2000<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0,<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>tm_sec</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0,<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>tm_min</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0,<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>tm_hour</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1,<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>tm_mday</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0,<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>tm_mon</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>100,<sp/></highlight><highlight class="comment">//<sp/>tm_year</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0,<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>tm_wday</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0,<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>tm_yday</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0,<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>tm_isdst</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mktime(tm)<sp/>-<sp/>(mktime(&amp;start2000)<sp/>-<sp/>946684800);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/SPIFFSLoggerBase.cpp"/>
+  </compounddef>
+</doxygen>

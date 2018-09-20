@@ -3,6 +3,8 @@
   <compounddef id="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir">
     <compoundname>src</compoundname>
     <innerfile refid="_s_p_i_f_f_s_logger_8h">SPIFFSLogger.h</innerfile>
+    <innerfile refid="_s_p_i_f_f_s_logger_base_8cpp">SPIFFSLoggerBase.cpp</innerfile>
+    <innerfile refid="_s_p_i_f_f_s_logger_base_8h">SPIFFSLoggerBase.h</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

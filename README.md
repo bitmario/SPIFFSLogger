@@ -19,6 +19,11 @@ Clone the library into your libraries folder, or download the zip and extract it
 
 ## class `SPIFFSLogger<T>` 
 
+```
+class SPIFFSLogger
+  : public SPIFFSLoggerBase
+```  
+
 Minimal class template for binary data logging in ESP8266 SPIFFS.
 
 Makes it easy to read, write and keep logs of relevant data, such as sensor readings in an efficient way, by storing data in raw, binary format along with a time_t. One file is created per UTC day to store the respective data, and deleted once it has reached the defined maximum age.
@@ -31,21 +36,22 @@ Makes it easy to read, write and keep logs of relevant data, such as sensor read
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public  `[`SPIFFSLogger`](#class_s_p_i_f_f_s_logger_1afa8152a5d5d29fedbb04265cb4589359)`(const char * directory,uint16_t daysToKeep,uint16_t processInterval)` | Default constructor for [SPIFFSLogger](#class_s_p_i_f_f_s_logger).
-`public void `[`init`](#class_s_p_i_f_f_s_logger_1abfc7ce5e1a8022705c6704e50edf087d)`()` | Initialize the logger.
-`public void `[`process`](#class_s_p_i_f_f_s_logger_1a34f24a3c6229653a31c166b899d43537)`()` | Process the file rotation and other required operations according to the defined processInterval.
 `public size_t `[`write`](#class_s_p_i_f_f_s_logger_1a2e914dd1884de9900288564a41bc55a4)`(const T & value)` | Write the specified value to the end of the current log file, with the current timestamp.
 `public size_t `[`readRows`](#class_s_p_i_f_f_s_logger_1aeceb2db3a41feb387e874f247657e19c)`(`[`SPIFFSLogData`](#struct_s_p_i_f_f_s_log_data)`< T > * output,time_t date,size_t startIdx,size_t maxCount)` | Read data from a daily logfile into a buffer.
+`public size_t `[`readRowsBetween`](#class_s_p_i_f_f_s_logger_1a8d82d01f694528becba720e0612dc48d)`(`[`SPIFFSLogData`](#struct_s_p_i_f_f_s_log_data)`< T > * output,time_t fromTime,time_t toTime,size_t startIdx,size_t maxCount)` | 
 `public size_t `[`rowCount`](#class_s_p_i_f_f_s_logger_1ac539407d1bfebe9443393ea2e4047e29)`(time_t date)` | Get the number of entries for the specified date.
-`protected time_t `[`_today`](#class_s_p_i_f_f_s_logger_1a0a83d73217bc8bada843092ae7d055e8) | current date, set in the last processing run
-`protected unsigned long `[`_lastProcess`](#class_s_p_i_f_f_s_logger_1ad48c3983258885410e6b7d0a299e8e69) | last processing millis()
-`protected const uint16_t `[`_processInterval`](#class_s_p_i_f_f_s_logger_1a42017253e85b5f4978e4ba778960a62d) | ms between processing runs
-`protected const uint16_t `[`_daysToKeep`](#class_s_p_i_f_f_s_logger_1afa47e4215bf7dc8a27704e5c10324fa8) | number of days to keep logs for
-`protected bool `[`_processNow`](#class_s_p_i_f_f_s_logger_1af6227914a7bd060a26b5f83fa5641665) | force processing now, even if the processing interval hasn't passed
-`protected char `[`_directory`](#class_s_p_i_f_f_s_logger_1a294e4b04bb7d26c6d63d4168d574221a) | base directory for log files
-`protected char `[`_curPath`](#class_s_p_i_f_f_s_logger_1af6c68f5bf3ceccde605a89cb929bb787) | path for today's file
-`protected void `[`_pathFromDate`](#class_s_p_i_f_f_s_logger_1ad366d57e6ca7b721b27164e40fb342b3)`(char * output,time_t date)` | Converts a time_t to that day's file path.
-`protected void `[`_updateCurPath`](#class_s_p_i_f_f_s_logger_1ae6edbf5e924957c107068fce73554737)`()` | Updates the current path to match today's date.
-`protected void `[`_runRotation`](#class_s_p_i_f_f_s_logger_1afbb2b0583a0500e3e5eae006a6740992)`()` | Deletes files older than the defined age limit.
+`public void `[`init`](#class_s_p_i_f_f_s_logger_base_1ad2270960852a999b0340fa4eab50f063)`()` | Initialize the logger.
+`public void `[`process`](#class_s_p_i_f_f_s_logger_base_1a22fdd2b540717853ae403edbc0ed1b7f)`()` | Process the file rotation and other required operations according to the defined processInterval.
+`protected time_t `[`_today`](#class_s_p_i_f_f_s_logger_base_1a77a967ae68a680dea5a647200ba49815) | current date, set in the last processing run
+`protected unsigned long `[`_lastProcess`](#class_s_p_i_f_f_s_logger_base_1ac1b33a4c97b2a45b2b178a261ebbb12c) | last processing millis()
+`protected const uint16_t `[`_processInterval`](#class_s_p_i_f_f_s_logger_base_1a517fa4d3854283ba7b2dba9bf0d09c84) | ms between processing runs
+`protected const uint16_t `[`_daysToKeep`](#class_s_p_i_f_f_s_logger_base_1a8feb62f012879aca79d600cf217c2098) | number of days to keep logs for
+`protected bool `[`_processNow`](#class_s_p_i_f_f_s_logger_base_1a978f0a636ce4d7a7f1640df124cc25ff) | force processing now, even if the processing interval hasn't passed
+`protected char `[`_directory`](#class_s_p_i_f_f_s_logger_base_1a829da5d8bf3d83ed24e608bb60fc623c) | base directory for log files
+`protected char `[`_curPath`](#class_s_p_i_f_f_s_logger_base_1a7f79553c53c7b5b6c87aaaa104d5a1e3) | path for today's file
+`protected void `[`_pathFromDate`](#class_s_p_i_f_f_s_logger_base_1abfba26125f8b32b4c8e2e3d29d65b31f)`(char * output,time_t date)` | Converts a time_t to that day's file path.
+`protected void `[`_updateCurPath`](#class_s_p_i_f_f_s_logger_base_1aa5679e47e144e591b5fa90fb31b65cbd)`()` | Updates the current path to match today's date.
+`protected void `[`_runRotation`](#class_s_p_i_f_f_s_logger_base_1a2e9e45428e1ffbe989dd7679c5def4fe)`()` | Deletes files older than the defined age limit.
 
 ### Members
 
@@ -59,18 +65,6 @@ Default constructor for [SPIFFSLogger](#class_s_p_i_f_f_s_logger).
 * `daysToKeep` number of days to keep in flash. Once files are past this age, they are deleted. 
 
 * `processInterval` milliseconds between file directory updates and file rotation.
-
-#### `public void `[`init`](#class_s_p_i_f_f_s_logger_1abfc7ce5e1a8022705c6704e50edf087d)`()` 
-
-Initialize the logger.
-
-Should be called after initializing SPIFFS and before before any other method.
-
-#### `public void `[`process`](#class_s_p_i_f_f_s_logger_1a34f24a3c6229653a31c166b899d43537)`()` 
-
-Process the file rotation and other required operations according to the defined processInterval.
-
-Should be called as often as possible, i.e. in loop().
 
 #### `public size_t `[`write`](#class_s_p_i_f_f_s_logger_1a2e914dd1884de9900288564a41bc55a4)`(const T & value)` 
 
@@ -95,6 +89,8 @@ Read data from a daily logfile into a buffer.
 #### Returns
 number of entries read
 
+#### `public size_t `[`readRowsBetween`](#class_s_p_i_f_f_s_logger_1a8d82d01f694528becba720e0612dc48d)`(`[`SPIFFSLogData`](#struct_s_p_i_f_f_s_log_data)`< T > * output,time_t fromTime,time_t toTime,size_t startIdx,size_t maxCount)` 
+
 #### `public size_t `[`rowCount`](#class_s_p_i_f_f_s_logger_1ac539407d1bfebe9443393ea2e4047e29)`(time_t date)` 
 
 Get the number of entries for the specified date.
@@ -105,43 +101,55 @@ Get the number of entries for the specified date.
 #### Returns
 number of entries
 
-#### `protected time_t `[`_today`](#class_s_p_i_f_f_s_logger_1a0a83d73217bc8bada843092ae7d055e8) 
+#### `public void `[`init`](#class_s_p_i_f_f_s_logger_base_1ad2270960852a999b0340fa4eab50f063)`()` 
+
+Initialize the logger.
+
+Should be called after initializing SPIFFS and before before any other method.
+
+#### `public void `[`process`](#class_s_p_i_f_f_s_logger_base_1a22fdd2b540717853ae403edbc0ed1b7f)`()` 
+
+Process the file rotation and other required operations according to the defined processInterval.
+
+Should be called as often as possible, i.e. in loop().
+
+#### `protected time_t `[`_today`](#class_s_p_i_f_f_s_logger_base_1a77a967ae68a680dea5a647200ba49815) 
 
 current date, set in the last processing run
 
-#### `protected unsigned long `[`_lastProcess`](#class_s_p_i_f_f_s_logger_1ad48c3983258885410e6b7d0a299e8e69) 
+#### `protected unsigned long `[`_lastProcess`](#class_s_p_i_f_f_s_logger_base_1ac1b33a4c97b2a45b2b178a261ebbb12c) 
 
 last processing millis()
 
-#### `protected const uint16_t `[`_processInterval`](#class_s_p_i_f_f_s_logger_1a42017253e85b5f4978e4ba778960a62d) 
+#### `protected const uint16_t `[`_processInterval`](#class_s_p_i_f_f_s_logger_base_1a517fa4d3854283ba7b2dba9bf0d09c84) 
 
 ms between processing runs
 
-#### `protected const uint16_t `[`_daysToKeep`](#class_s_p_i_f_f_s_logger_1afa47e4215bf7dc8a27704e5c10324fa8) 
+#### `protected const uint16_t `[`_daysToKeep`](#class_s_p_i_f_f_s_logger_base_1a8feb62f012879aca79d600cf217c2098) 
 
 number of days to keep logs for
 
-#### `protected bool `[`_processNow`](#class_s_p_i_f_f_s_logger_1af6227914a7bd060a26b5f83fa5641665) 
+#### `protected bool `[`_processNow`](#class_s_p_i_f_f_s_logger_base_1a978f0a636ce4d7a7f1640df124cc25ff) 
 
 force processing now, even if the processing interval hasn't passed
 
-#### `protected char `[`_directory`](#class_s_p_i_f_f_s_logger_1a294e4b04bb7d26c6d63d4168d574221a) 
+#### `protected char `[`_directory`](#class_s_p_i_f_f_s_logger_base_1a829da5d8bf3d83ed24e608bb60fc623c) 
 
 base directory for log files
 
-#### `protected char `[`_curPath`](#class_s_p_i_f_f_s_logger_1af6c68f5bf3ceccde605a89cb929bb787) 
+#### `protected char `[`_curPath`](#class_s_p_i_f_f_s_logger_base_1a7f79553c53c7b5b6c87aaaa104d5a1e3) 
 
 path for today's file
 
-#### `protected void `[`_pathFromDate`](#class_s_p_i_f_f_s_logger_1ad366d57e6ca7b721b27164e40fb342b3)`(char * output,time_t date)` 
+#### `protected void `[`_pathFromDate`](#class_s_p_i_f_f_s_logger_base_1abfba26125f8b32b4c8e2e3d29d65b31f)`(char * output,time_t date)` 
 
 Converts a time_t to that day's file path.
 
-#### `protected void `[`_updateCurPath`](#class_s_p_i_f_f_s_logger_1ae6edbf5e924957c107068fce73554737)`()` 
+#### `protected void `[`_updateCurPath`](#class_s_p_i_f_f_s_logger_base_1aa5679e47e144e591b5fa90fb31b65cbd)`()` 
 
 Updates the current path to match today's date.
 
-#### `protected void `[`_runRotation`](#class_s_p_i_f_f_s_logger_1afbb2b0583a0500e3e5eae006a6740992)`()` 
+#### `protected void `[`_runRotation`](#class_s_p_i_f_f_s_logger_base_1a2e9e45428e1ffbe989dd7679c5def4fe)`()` 
 
 Deletes files older than the defined age limit.
 

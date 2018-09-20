@@ -5,26 +5,49 @@
     <member refid="struct_s_p_i_f_f_s_log_data_1a071121efdc7f6d95adc4dcdf736a84ec" kind="variable"><name>data</name></member>
   </compound>
   <compound refid="class_s_p_i_f_f_s_logger" kind="class"><name>SPIFFSLogger</name>
-    <member refid="class_s_p_i_f_f_s_logger_1a0a83d73217bc8bada843092ae7d055e8" kind="variable"><name>_today</name></member>
-    <member refid="class_s_p_i_f_f_s_logger_1ad48c3983258885410e6b7d0a299e8e69" kind="variable"><name>_lastProcess</name></member>
-    <member refid="class_s_p_i_f_f_s_logger_1a42017253e85b5f4978e4ba778960a62d" kind="variable"><name>_processInterval</name></member>
-    <member refid="class_s_p_i_f_f_s_logger_1afa47e4215bf7dc8a27704e5c10324fa8" kind="variable"><name>_daysToKeep</name></member>
-    <member refid="class_s_p_i_f_f_s_logger_1af6227914a7bd060a26b5f83fa5641665" kind="variable"><name>_processNow</name></member>
-    <member refid="class_s_p_i_f_f_s_logger_1a294e4b04bb7d26c6d63d4168d574221a" kind="variable"><name>_directory</name></member>
-    <member refid="class_s_p_i_f_f_s_logger_1af6c68f5bf3ceccde605a89cb929bb787" kind="variable"><name>_curPath</name></member>
     <member refid="class_s_p_i_f_f_s_logger_1afa8152a5d5d29fedbb04265cb4589359" kind="function"><name>SPIFFSLogger</name></member>
-    <member refid="class_s_p_i_f_f_s_logger_1abfc7ce5e1a8022705c6704e50edf087d" kind="function"><name>init</name></member>
-    <member refid="class_s_p_i_f_f_s_logger_1a34f24a3c6229653a31c166b899d43537" kind="function"><name>process</name></member>
     <member refid="class_s_p_i_f_f_s_logger_1a2e914dd1884de9900288564a41bc55a4" kind="function"><name>write</name></member>
     <member refid="class_s_p_i_f_f_s_logger_1aeceb2db3a41feb387e874f247657e19c" kind="function"><name>readRows</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_1a8d82d01f694528becba720e0612dc48d" kind="function"><name>readRowsBetween</name></member>
     <member refid="class_s_p_i_f_f_s_logger_1ac539407d1bfebe9443393ea2e4047e29" kind="function"><name>rowCount</name></member>
-    <member refid="class_s_p_i_f_f_s_logger_1ad366d57e6ca7b721b27164e40fb342b3" kind="function"><name>_pathFromDate</name></member>
-    <member refid="class_s_p_i_f_f_s_logger_1ae6edbf5e924957c107068fce73554737" kind="function"><name>_updateCurPath</name></member>
-    <member refid="class_s_p_i_f_f_s_logger_1afbb2b0583a0500e3e5eae006a6740992" kind="function"><name>_runRotation</name></member>
-    <member refid="class_s_p_i_f_f_s_logger_1ae2c5d02510b4d7513893aaee7db3d137" kind="function"><name>_timegm</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1ad2270960852a999b0340fa4eab50f063" kind="function"><name>init</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a22fdd2b540717853ae403edbc0ed1b7f" kind="function"><name>process</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a77a967ae68a680dea5a647200ba49815" kind="variable"><name>_today</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1ac1b33a4c97b2a45b2b178a261ebbb12c" kind="variable"><name>_lastProcess</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a517fa4d3854283ba7b2dba9bf0d09c84" kind="variable"><name>_processInterval</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a8feb62f012879aca79d600cf217c2098" kind="variable"><name>_daysToKeep</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a978f0a636ce4d7a7f1640df124cc25ff" kind="variable"><name>_processNow</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a829da5d8bf3d83ed24e608bb60fc623c" kind="variable"><name>_directory</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a7f79553c53c7b5b6c87aaaa104d5a1e3" kind="variable"><name>_curPath</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1abfba26125f8b32b4c8e2e3d29d65b31f" kind="function"><name>_pathFromDate</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1aa5679e47e144e591b5fa90fb31b65cbd" kind="function"><name>_updateCurPath</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a2e9e45428e1ffbe989dd7679c5def4fe" kind="function"><name>_runRotation</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a0f0bc03eb433c0f2a9dd537e8be92892" kind="function"><name>_filenameToDate</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1ab520631b16a4bd22e55cada2781287a8" kind="function"><name>_timegm</name></member>
+  </compound>
+  <compound refid="class_s_p_i_f_f_s_logger_base" kind="class"><name>SPIFFSLoggerBase</name>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a77a967ae68a680dea5a647200ba49815" kind="variable"><name>_today</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1ac1b33a4c97b2a45b2b178a261ebbb12c" kind="variable"><name>_lastProcess</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a517fa4d3854283ba7b2dba9bf0d09c84" kind="variable"><name>_processInterval</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a8feb62f012879aca79d600cf217c2098" kind="variable"><name>_daysToKeep</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a978f0a636ce4d7a7f1640df124cc25ff" kind="variable"><name>_processNow</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a829da5d8bf3d83ed24e608bb60fc623c" kind="variable"><name>_directory</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a7f79553c53c7b5b6c87aaaa104d5a1e3" kind="variable"><name>_curPath</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1ad2270960852a999b0340fa4eab50f063" kind="function"><name>init</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a22fdd2b540717853ae403edbc0ed1b7f" kind="function"><name>process</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1ace02cadd2e608c940728ae9f5242bbcc" kind="function"><name>SPIFFSLoggerBase</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1abfba26125f8b32b4c8e2e3d29d65b31f" kind="function"><name>_pathFromDate</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1aa5679e47e144e591b5fa90fb31b65cbd" kind="function"><name>_updateCurPath</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a2e9e45428e1ffbe989dd7679c5def4fe" kind="function"><name>_runRotation</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1a0f0bc03eb433c0f2a9dd537e8be92892" kind="function"><name>_filenameToDate</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_base_1ab520631b16a4bd22e55cada2781287a8" kind="function"><name>_timegm</name></member>
   </compound>
   <compound refid="_s_p_i_f_f_s_logger_8h" kind="file"><name>SPIFFSLogger.h</name>
-    <member refid="_s_p_i_f_f_s_logger_8h_1af70a7c4bf0e665786ae633f14c7b351f" kind="variable"><name>PROGMEM</name></member>
+  </compound>
+  <compound refid="_s_p_i_f_f_s_logger_base_8cpp" kind="file"><name>SPIFFSLoggerBase.cpp</name>
+    <member refid="_s_p_i_f_f_s_logger_base_8cpp_1af70a7c4bf0e665786ae633f14c7b351f" kind="variable"><name>PROGMEM</name></member>
+  </compound>
+  <compound refid="_s_p_i_f_f_s_logger_base_8h" kind="file"><name>SPIFFSLoggerBase.h</name>
   </compound>
   <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
   </compound>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SPIFFSLogger: SPIFFSLogger&lt; T &gt; Class Template Reference</title>
+<title>SPIFFSLogger: SPIFFSLoggerBase Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -59,7 +59,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('class_s_p_i_f_f_s_logger.html','');});
+$(document).ready(function(){initNavTree('class_s_p_i_f_f_s_logger_base.html','');});
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -69,35 +69,21 @@ $(document).ready(function(){initNavTree('class_s_p_i_f_f_s_logger.html','');});
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
-<a href="class_s_p_i_f_f_s_logger-members.html">List of all members</a>  </div>
+<a href="class_s_p_i_f_f_s_logger_base-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">SPIFFSLogger&lt; T &gt; Class Template Reference</div>  </div>
+<div class="title">SPIFFSLoggerBase Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Minimal class template for binary data logging in ESP8266 SPIFFS.  
- <a href="class_s_p_i_f_f_s_logger.html#details">More...</a></p>
+<p>Base class for the <a class="el" href="class_s_p_i_f_f_s_logger.html" title="Minimal class template for binary data logging in ESP8266 SPIFFS. ">SPIFFSLogger</a> template, implementing common methods.  
+ <a href="class_s_p_i_f_f_s_logger_base.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_s_p_i_f_f_s_logger_8h_source.html">SPIFFSLogger.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_s_p_i_f_f_s_logger_base_8h_source.html">SPIFFSLoggerBase.h</a>&gt;</code></p>
 
-<p>Inherits <a class="el" href="class_s_p_i_f_f_s_logger_base.html">SPIFFSLoggerBase</a>.</p>
+<p>Inherited by <a class="el" href="class_s_p_i_f_f_s_logger.html">SPIFFSLogger&lt; T &gt;</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afa8152a5d5d29fedbb04265cb4589359"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_p_i_f_f_s_logger.html#afa8152a5d5d29fedbb04265cb4589359">SPIFFSLogger</a> (const char *directory, uint16_t daysToKeep=7, uint16_t processInterval=1000)</td></tr>
-<tr class="memdesc:afa8152a5d5d29fedbb04265cb4589359"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor for <a class="el" href="class_s_p_i_f_f_s_logger.html" title="Minimal class template for binary data logging in ESP8266 SPIFFS. ">SPIFFSLogger</a>.  <a href="#afa8152a5d5d29fedbb04265cb4589359">More...</a><br /></td></tr>
-<tr class="separator:afa8152a5d5d29fedbb04265cb4589359"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e914dd1884de9900288564a41bc55a4"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_p_i_f_f_s_logger.html#a2e914dd1884de9900288564a41bc55a4">write</a> (const T &amp;value)</td></tr>
-<tr class="memdesc:a2e914dd1884de9900288564a41bc55a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the specified value to the end of the current log file, with the current timestamp.  <a href="#a2e914dd1884de9900288564a41bc55a4">More...</a><br /></td></tr>
-<tr class="separator:a2e914dd1884de9900288564a41bc55a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeceb2db3a41feb387e874f247657e19c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_p_i_f_f_s_logger.html#aeceb2db3a41feb387e874f247657e19c">readRows</a> (<a class="el" href="struct_s_p_i_f_f_s_log_data.html">SPIFFSLogData</a>&lt; T &gt; *output, time_t date, size_t startIdx, size_t maxCount)</td></tr>
-<tr class="memdesc:aeceb2db3a41feb387e874f247657e19c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read data from a daily logfile into a buffer.  <a href="#aeceb2db3a41feb387e874f247657e19c">More...</a><br /></td></tr>
-<tr class="separator:aeceb2db3a41feb387e874f247657e19c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d82d01f694528becba720e0612dc48d"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_p_i_f_f_s_logger.html#a8d82d01f694528becba720e0612dc48d">readRowsBetween</a> (<a class="el" href="struct_s_p_i_f_f_s_log_data.html">SPIFFSLogData</a>&lt; T &gt; *output, time_t fromTime, time_t toTime, size_t startIdx, size_t maxCount)</td></tr>
-<tr class="separator:a8d82d01f694528becba720e0612dc48d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac539407d1bfebe9443393ea2e4047e29"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_p_i_f_f_s_logger.html#ac539407d1bfebe9443393ea2e4047e29">rowCount</a> (time_t date)</td></tr>
-<tr class="memdesc:ac539407d1bfebe9443393ea2e4047e29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of entries for the specified date.  <a href="#ac539407d1bfebe9443393ea2e4047e29">More...</a><br /></td></tr>
-<tr class="separator:ac539407d1bfebe9443393ea2e4047e29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2270960852a999b0340fa4eab50f063"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_p_i_f_f_s_logger_base.html#ad2270960852a999b0340fa4eab50f063">init</a> ()</td></tr>
 <tr class="memdesc:ad2270960852a999b0340fa4eab50f063"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the logger.  <a href="#ad2270960852a999b0340fa4eab50f063">More...</a><br /></td></tr>
 <tr class="separator:ad2270960852a999b0340fa4eab50f063"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -107,6 +93,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:ace02cadd2e608c940728ae9f5242bbcc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_p_i_f_f_s_logger_base.html#ace02cadd2e608c940728ae9f5242bbcc">SPIFFSLoggerBase</a> (const char *directory, uint16_t daysToKeep, uint16_t processInterval)</td></tr>
+<tr class="separator:ace02cadd2e608c940728ae9f5242bbcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfba26125f8b32b4c8e2e3d29d65b31f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_p_i_f_f_s_logger_base.html#abfba26125f8b32b4c8e2e3d29d65b31f">_pathFromDate</a> (char *output, time_t date)</td></tr>
 <tr class="memdesc:abfba26125f8b32b4c8e2e3d29d65b31f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a time_t to that day's file path.  <a href="#abfba26125f8b32b4c8e2e3d29d65b31f">More...</a><br /></td></tr>
 <tr class="separator:abfba26125f8b32b4c8e2e3d29d65b31f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,28 +139,20 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a7f79553c53c7b5b6c87aaaa104d5a1e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h3>template&lt;class T&gt;<br />
-class SPIFFSLogger&lt; T &gt;</h3>
-
-<p>Minimal class template for binary data logging in ESP8266 SPIFFS. </p>
-<p>Makes it easy to read, write and keep logs of relevant data, such as sensor readings in an efficient way, by storing data in raw, binary format along with a time_t. One file is created per UTC day to store the respective data, and deleted once it has reached the defined maximum age.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>type to store, e.g. a struct. </td></tr>
-  </table>
-  </dd>
-</dl>
+<div class="textblock"><p>Base class for the <a class="el" href="class_s_p_i_f_f_s_logger.html" title="Minimal class template for binary data logging in ESP8266 SPIFFS. ">SPIFFSLogger</a> template, implementing common methods. </p>
+<p>Should not be used directly. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="afa8152a5d5d29fedbb04265cb4589359"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa8152a5d5d29fedbb04265cb4589359">&#9670;&nbsp;</a></span>SPIFFSLogger()</h2>
+<a id="ace02cadd2e608c940728ae9f5242bbcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace02cadd2e608c940728ae9f5242bbcc">&#9670;&nbsp;</a></span>SPIFFSLoggerBase()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_s_p_i_f_f_s_logger.html">SPIFFSLogger</a>&lt; T &gt;::<a class="el" href="class_s_p_i_f_f_s_logger.html">SPIFFSLogger</a> </td>
+          <td class="memname">SPIFFSLoggerBase::SPIFFSLoggerBase </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>directory</em>, </td>
@@ -181,13 +161,13 @@ template&lt;class T &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>daysToKeep</em> = <code>7</code>, </td>
+          <td class="paramname"><em>daysToKeep</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>processInterval</em> = <code>1000</code>&#160;</td>
+          <td class="paramname"><em>processInterval</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -195,17 +175,12 @@ template&lt;class T &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-
-<p>Default constructor for <a class="el" href="class_s_p_i_f_f_s_logger.html" title="Minimal class template for binary data logging in ESP8266 SPIFFS. ">SPIFFSLogger</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">directory</td><td>char array with the base directory where files will be stored. Should not include trailing slash and should be 20 characters or less. </td></tr>
-    <tr><td class="paramname">daysToKeep</td><td>number of days to keep in flash. Once files are past this age, they are deleted. </td></tr>
-    <tr><td class="paramname">processInterval</td><td>milliseconds between file directory updates and file rotation. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -229,7 +204,7 @@ template&lt;class T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -267,7 +242,7 @@ template&lt;class T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -294,7 +269,7 @@ template&lt;class T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -322,7 +297,7 @@ template&lt;class T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -349,7 +324,7 @@ template&lt;class T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -363,9 +338,6 @@ template&lt;class T &gt; </div>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void SPIFFSLoggerBase::init </td>
@@ -374,11 +346,6 @@ template&lt;class T &gt; </div>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Initialize the logger. </p>
@@ -391,9 +358,6 @@ template&lt;class T &gt; </div>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void SPIFFSLoggerBase::process </td>
@@ -402,174 +366,10 @@ template&lt;class T &gt; </div>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Process the file rotation and other required operations according to the defined processInterval. </p>
 <p>Should be called as often as possible, i.e. in loop(). </p>
-
-</div>
-</div>
-<a id="aeceb2db3a41feb387e874f247657e19c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeceb2db3a41feb387e874f247657e19c">&#9670;&nbsp;</a></span>readRows()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t <a class="el" href="class_s_p_i_f_f_s_logger.html">SPIFFSLogger</a>&lt; T &gt;::readRows </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_s_p_i_f_f_s_log_data.html">SPIFFSLogData</a>&lt; T &gt; *&#160;</td>
-          <td class="paramname"><em>output</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">time_t&#160;</td>
-          <td class="paramname"><em>date</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>startIdx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>maxCount</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Read data from a daily logfile into a buffer. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">output</td><td>buffer where data will be written </td></tr>
-    <tr><td class="paramname">date</td><td>time_t representing the date of the file </td></tr>
-    <tr><td class="paramname">startIdx</td><td>0-based index of the entries to read (row number) </td></tr>
-    <tr><td class="paramname">maxCount</td><td>maximum number of entries to read </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>number of entries read </dd></dl>
-
-</div>
-</div>
-<a id="a8d82d01f694528becba720e0612dc48d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d82d01f694528becba720e0612dc48d">&#9670;&nbsp;</a></span>readRowsBetween()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t <a class="el" href="class_s_p_i_f_f_s_logger.html">SPIFFSLogger</a>&lt; T &gt;::readRowsBetween </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_s_p_i_f_f_s_log_data.html">SPIFFSLogData</a>&lt; T &gt; *&#160;</td>
-          <td class="paramname"><em>output</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">time_t&#160;</td>
-          <td class="paramname"><em>fromTime</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">time_t&#160;</td>
-          <td class="paramname"><em>toTime</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>startIdx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>maxCount</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac539407d1bfebe9443393ea2e4047e29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac539407d1bfebe9443393ea2e4047e29">&#9670;&nbsp;</a></span>rowCount()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t <a class="el" href="class_s_p_i_f_f_s_logger.html">SPIFFSLogger</a>&lt; T &gt;::rowCount </td>
-          <td>(</td>
-          <td class="paramtype">time_t&#160;</td>
-          <td class="paramname"><em>date</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the number of entries for the specified date. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">date</td><td>a time_t representing the day to check </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>number of entries </dd></dl>
-
-</div>
-</div>
-<a id="a2e914dd1884de9900288564a41bc55a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e914dd1884de9900288564a41bc55a4">&#9670;&nbsp;</a></span>write()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t <a class="el" href="class_s_p_i_f_f_s_logger.html">SPIFFSLogger</a>&lt; T &gt;::write </td>
-          <td>(</td>
-          <td class="paramtype">const T &amp;&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Write the specified value to the end of the current log file, with the current timestamp. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>the value to write </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -589,7 +389,7 @@ template&lt;class T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -613,7 +413,7 @@ template&lt;class T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -637,7 +437,7 @@ template&lt;class T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -661,7 +461,7 @@ template&lt;class T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -685,7 +485,7 @@ template&lt;class T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -709,7 +509,7 @@ template&lt;class T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -733,7 +533,7 @@ template&lt;class T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -742,15 +542,16 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/<a class="el" href="_s_p_i_f_f_s_logger_8h_source.html">SPIFFSLogger.h</a></li>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/<a class="el" href="_s_p_i_f_f_s_logger_base_8h_source.html">SPIFFSLoggerBase.h</a></li>
+<li>src/<a class="el" href="_s_p_i_f_f_s_logger_base_8cpp.html">SPIFFSLoggerBase.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="class_s_p_i_f_f_s_logger.html">SPIFFSLogger</a></li>
+    <li class="navelem"><a class="el" href="class_s_p_i_f_f_s_logger_base.html">SPIFFSLoggerBase</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>

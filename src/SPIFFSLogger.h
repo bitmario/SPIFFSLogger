@@ -19,12 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __SPIFFSLOGGER_H__
 #define __SPIFFSLOGGER_H__
 
-#include <Arduino.h>
-#include <FS.h>
-#include <time.h>
-
-// internal strings stored in flash for efficiency
-static const char _logFilenameFormat[] PROGMEM = "%s/%d%02d%02d";
+#include "SPIFFSLoggerBase.h"
 
 /**
  * Represents a data element as stored in SPIFFS, along with the creation timestamp.
@@ -48,7 +43,7 @@ struct SPIFFSLogData
  * @tparam T  type to store, e.g. a struct.
  */
 template <class T>
-class SPIFFSLogger
+class SPIFFSLogger : public SPIFFSLoggerBase
 {
   public:
     /**
@@ -60,17 +55,6 @@ class SPIFFSLogger
      * @param processInterval  milliseconds between file directory updates and file rotation.
      */
     SPIFFSLogger(const char *directory, uint16_t daysToKeep = 7, uint16_t processInterval = 1000);
-
-    /**
-     * Initialize the logger. Should be called after initializing SPIFFS and before before any other method.
-     */
-    void init();
-
-    /**
-     * Process the file rotation and other required operations according to the defined processInterval.
-     * Should be called as often as possible, i.e. in loop().
-     */
-    void process();
 
     /**
      * Write the specified value to the end of the current log file, with the current timestamp.
@@ -90,6 +74,8 @@ class SPIFFSLogger
      */
     size_t readRows(SPIFFSLogData<T> *output, time_t date, size_t startIdx, size_t maxCount);
 
+    size_t readRowsBetween(SPIFFSLogData<T> *output, time_t fromTime, time_t toTime, size_t startIdx, size_t maxCount);
+
     /**
      * Get the number of entries for the specified date.
      * 
@@ -97,68 +83,12 @@ class SPIFFSLogger
      * @return      number of entries
      */
     size_t rowCount(time_t date);
-
-  protected:
-    time_t _today = 0;               /**< current date, set in the last processing run */
-    unsigned long _lastProcess = 0;  /**< last processing millis() */
-    const uint16_t _processInterval; /**< ms between processing runs */
-    const uint16_t _daysToKeep;      /**< number of days to keep logs for */
-    bool _processNow = true;         /**< force processing now, even if the processing interval hasn't passed */
-    char _directory[21];             /**< base directory for log files */
-    char _curPath[32];               /**< path for today's file */
-
-    /**
-     * Converts a time_t to that day's file path.
-     */
-    void _pathFromDate(char *output, time_t date);
-
-    /**
-     * Updates the current path to match today's date.
-     */
-    void _updateCurPath();
-
-    /**
-     * Deletes files older than the defined age limit.
-     */
-    void _runRotation();
-
-    /**
-     * Simple timegm function, since one is not available in the ESP libs.
-     */
-    static time_t _timegm(struct tm *tm);
 };
 
 template <class T>
 SPIFFSLogger<T>::SPIFFSLogger(const char *directory, uint16_t daysToKeep, uint16_t processInterval)
-    : _daysToKeep(daysToKeep), _processInterval(processInterval)
+    : SPIFFSLoggerBase(directory, daysToKeep, processInterval)
 {
-    strncpy(this->_directory, directory, sizeof(this->_directory) - 1);
-}
-
-template <class T>
-void SPIFFSLogger<T>::init()
-{
-    this->process();
-}
-
-template <class T>
-void SPIFFSLogger<T>::process()
-{
-    const unsigned long currentMillis = millis();
-    if (currentMillis - this->_lastProcess > this->_processInterval || this->_processNow)
-    {
-        const time_t now = time(nullptr);
-        const time_t today = now / 86400 * 86400; // remove the time part
-        if (this->_today != today)
-        { // we have switched to another day, let's run the required updates
-            this->_today = today;
-            this->_updateCurPath();
-            this->_runRotation();
-        }
-
-        this->_lastProcess = currentMillis;
-        this->_processNow = false;
-    }
 }
 
 template <class T>
@@ -207,75 +137,6 @@ size_t SPIFFSLogger<T>::rowCount(time_t date)
     f.close();
 
     return rows;
-}
-
-template <class T>
-void SPIFFSLogger<T>::_pathFromDate(char *output, time_t date)
-{
-    if (date <= 0)
-        date = this->_today;
-
-    struct tm *tinfo = gmtime(&date);
-    sprintf_P(output,
-              _logFilenameFormat,
-              this->_directory,
-              1900 + tinfo->tm_year,
-              tinfo->tm_mon + 1,
-              tinfo->tm_mday);
-}
-
-template <class T>
-void SPIFFSLogger<T>::_updateCurPath()
-{
-    SPIFFSLogger::_pathFromDate(this->_curPath, this->_today);
-}
-
-template <class T>
-void SPIFFSLogger<T>::_runRotation()
-{
-    const uint8_t dirLen = strlen(this->_directory);
-    Dir tempDir = SPIFFS.openDir(this->_directory);
-
-    char datePart[5] = {0};
-    while (tempDir.next())
-    {
-        struct tm tm = {0};
-        const char *dateStart = tempDir.fileName().c_str() + dirLen + 1;
-
-        strncpy(datePart, dateStart, 4);
-        tm.tm_year = atoi(datePart) - 1900;
-
-        strncpy(datePart, dateStart + 4, 2);
-        datePart[2] = '\0';
-        tm.tm_mon = atoi(datePart) - 1;
-
-        strncpy(datePart, dateStart + 6, 2);
-        tm.tm_mday = atoi(datePart);
-
-        const time_t midnight = SPIFFSLogger::_timegm(&tm) / 86400 * 86400;
-
-        // check if file is too old and, if so, delete it
-        if (midnight < (this->_today - this->_daysToKeep * 86400))
-            SPIFFS.remove(tempDir.fileName());
-    }
-}
-
-template <class T>
-time_t SPIFFSLogger<T>::_timegm(struct tm *tm)
-{
-    struct tm start2000 = {
-        0,   // tm_sec
-        0,   // tm_min
-        0,   // tm_hour
-        1,   // tm_mday
-        0,   // tm_mon
-        100, // tm_year
-        0,   // tm_wday
-        0,   // tm_yday
-        0,   // tm_isdst
-    };
-
-    return mktime(tm) - (mktime(&start2000) - 946684800);
 }
 
 #endif // __SPIFFSLOGGER_H__
