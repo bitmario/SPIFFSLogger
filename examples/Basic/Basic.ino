@@ -4,9 +4,9 @@
 #include <SPIFFSLogger.h>
 
 #define SSID "Lab"
-#define PSK "ESP"
+#define PSK "WifiPassword"
 
-#define LOGGING_INTERVAL 2000
+#define LOGGING_INTERVAL 5000
 
 // struct that defines the data we would like to log
 struct MyData
@@ -25,7 +25,7 @@ void setup()
 {
     Serial.begin(115200);
 
-    // we need wifi and NTP (or local) ESP8266 time
+    // we need wifi+NTP (or local/RTC) ESP8266 time
     wifiSetup();
     timeSetup();
 
@@ -68,6 +68,22 @@ void loop()
                       readback.timestampUTC,
                       readback.data.temp,
                       readback.data.humidity);
+
+        Serial.printf("Current logfile has %u rows.\n", rowCount);
+
+        // filtering example
+        logger.readRowsBetween(&readback,      // output
+                               now - (60 * 5), // time start (inclusive)
+                               now,            // time end (inclusive)
+                               0,              // start index
+                               1               // max number of rows to fetch (size your output buffer accordingly!)
+        );
+        Serial.printf("First record in the last 5 minutes: %d, temp: %.1f, humidity: %.1f\n",
+                      readback.timestampUTC,
+                      readback.data.temp,
+                      readback.data.humidity);
+
+        Serial.println();
 
         lastLog = currentMillis;
     }

@@ -83,6 +83,14 @@ class SPIFFSLogger : public SPIFFSLoggerBase
      * @return      number of entries
      */
     size_t rowCount(time_t date);
+
+    /**
+     * Get the number of entries in the specified file.
+     * 
+     * @param logFile  a File object for a valid logfile
+     * @return         number of entries
+     */
+    size_t rowCount(File &logFile);
 };
 
 template <class T>
@@ -124,6 +132,62 @@ size_t SPIFFSLogger<T>::readRows(SPIFFSLogData<T> *output, time_t date, size_t s
 }
 
 template <class T>
+size_t SPIFFSLogger<T>::readRowsBetween(SPIFFSLogData<T> *output, time_t fromTime, time_t toTime, size_t startIdx, size_t maxCount)
+{
+    const time_t startDay = fromTime / 86400 * 86400;
+    const uint8_t dirLen = strlen(this->_directory);
+    Dir logDir = SPIFFS.openDir(this->_directory);
+
+    size_t hits = 0;
+    size_t copied = 0;
+
+    while (logDir.next() && copied < maxCount)
+    {
+        const char *dateStart = logDir.fileName().c_str() + dirLen + 1;
+        const time_t midnight = SPIFFSLoggerBase::_filenameToDate(dateStart);
+
+        if (midnight < startDay || midnight > toTime)
+            continue;
+
+        size_t idx = 0;
+        File f = logDir.openFile("r");
+        const size_t rowCount = this->rowCount(f);
+
+        while (idx < rowCount && copied < maxCount)
+        {
+            struct SPIFFSLogData<T> data;
+            f.seek(idx * sizeof(SPIFFSLogData<T>));
+            f.read((uint8_t *)&data, sizeof(time_t)); // read only the timestamp
+
+            if (data.timestampUTC > toTime)
+                break; // we got all we needed from this file
+            if (data.timestampUTC >= fromTime)
+            { // match
+                hits++;
+                if (hits > startIdx)
+                {
+                    SPIFFSLogData<T>* curOutput = output + (copied * sizeof(SPIFFSLogData<T>));
+                    
+                    // copy the timestamp
+                    memcpy(curOutput, &data, sizeof(time_t));
+
+                    // read the remaining data directly
+                    f.read((uint8_t*)curOutput + sizeof(time_t), sizeof(SPIFFSLogData<T>) - sizeof(time_t));
+
+                    copied++;
+                }
+            }
+
+            idx++;
+        }
+
+        f.close();
+    }
+
+    return copied;
+}
+
+template <class T>
 size_t SPIFFSLogger<T>::rowCount(time_t date)
 {
     char path[32];
@@ -133,10 +197,16 @@ size_t SPIFFSLogger<T>::rowCount(time_t date)
         return 0;
 
     File f = SPIFFS.open(path, "r");
-    const size_t rows = f.size() / sizeof(SPIFFSLogData<T>);
+    const size_t rows = this->rowCount(f);
     f.close();
 
     return rows;
+}
+
+template <class T>
+size_t SPIFFSLogger<T>::rowCount(File &logFile)
+{
+    return logFile.size() / sizeof(SPIFFSLogData<T>);
 }
 
 #endif // __SPIFFSLOGGER_H__
