@@ -29,6 +29,7 @@ Makes it easy to read, write and keep logs of relevant data, such as sensor read
 `public size_t `[`readRows`](#class_s_p_i_f_f_s_logger_1aeceb2db3a41feb387e874f247657e19c)`(`[`SPIFFSLogData`](#struct_s_p_i_f_f_s_log_data)`< T > * output,time_t date,size_t startIdx,size_t maxCount)` | Read data from a daily logfile into a buffer.
 `public size_t `[`readRowsBetween`](#class_s_p_i_f_f_s_logger_1a8d82d01f694528becba720e0612dc48d)`(`[`SPIFFSLogData`](#struct_s_p_i_f_f_s_log_data)`< T > * output,time_t fromTime,time_t toTime,size_t startIdx,size_t maxCount)` | 
 `public size_t `[`rowCount`](#class_s_p_i_f_f_s_logger_1ac539407d1bfebe9443393ea2e4047e29)`(time_t date)` | Get the number of entries for the specified date.
+`public size_t `[`rowCount`](#class_s_p_i_f_f_s_logger_1a7b59fa85e65ec2ca2fa2b26f22d4e936)`(File & logFile)` | Get the number of entries in the specified file.
 `public void `[`init`](#class_s_p_i_f_f_s_logger_base_1ad2270960852a999b0340fa4eab50f063)`()` | Initialize the logger.
 `public void `[`process`](#class_s_p_i_f_f_s_logger_base_1a22fdd2b540717853ae403edbc0ed1b7f)`()` | Process the file rotation and other required operations according to the defined processInterval.
 `protected time_t `[`_today`](#class_s_p_i_f_f_s_logger_base_1a77a967ae68a680dea5a647200ba49815) | current date, set in the last processing run
@@ -86,6 +87,16 @@ Get the number of entries for the specified date.
 
 #### Parameters
 * `date` a time_t representing the day to check 
+
+#### Returns
+number of entries
+
+#### `public size_t `[`rowCount`](#class_s_p_i_f_f_s_logger_1a7b59fa85e65ec2ca2fa2b26f22d4e936)`(File & logFile)` 
+
+Get the number of entries in the specified file.
+
+#### Parameters
+* `logFile` a File object for a valid logfile 
 
 #### Returns
 number of entries

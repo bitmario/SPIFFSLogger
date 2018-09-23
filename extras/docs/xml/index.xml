@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.14">
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.13">
   <compound refid="struct_s_p_i_f_f_s_log_data" kind="struct"><name>SPIFFSLogData</name>
     <member refid="struct_s_p_i_f_f_s_log_data_1a692b3adc90780d9388d6833d2170400c" kind="variable"><name>timestampUTC</name></member>
     <member refid="struct_s_p_i_f_f_s_log_data_1a071121efdc7f6d95adc4dcdf736a84ec" kind="variable"><name>data</name></member>
@@ -10,6 +10,7 @@
     <member refid="class_s_p_i_f_f_s_logger_1aeceb2db3a41feb387e874f247657e19c" kind="function"><name>readRows</name></member>
     <member refid="class_s_p_i_f_f_s_logger_1a8d82d01f694528becba720e0612dc48d" kind="function"><name>readRowsBetween</name></member>
     <member refid="class_s_p_i_f_f_s_logger_1ac539407d1bfebe9443393ea2e4047e29" kind="function"><name>rowCount</name></member>
+    <member refid="class_s_p_i_f_f_s_logger_1a7b59fa85e65ec2ca2fa2b26f22d4e936" kind="function"><name>rowCount</name></member>
     <member refid="class_s_p_i_f_f_s_logger_base_1ad2270960852a999b0340fa4eab50f063" kind="function"><name>init</name></member>
     <member refid="class_s_p_i_f_f_s_logger_base_1a22fdd2b540717853ae403edbc0ed1b7f" kind="function"><name>process</name></member>
     <member refid="class_s_p_i_f_f_s_logger_base_1a77a967ae68a680dea5a647200ba49815" kind="variable"><name>_today</name></member>

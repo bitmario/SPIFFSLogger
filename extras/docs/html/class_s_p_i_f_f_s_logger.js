@@ -9,6 +9,7 @@ var class_s_p_i_f_f_s_logger =
     [ "readRows", "class_s_p_i_f_f_s_logger.html#aeceb2db3a41feb387e874f247657e19c", null ],
     [ "readRowsBetween", "class_s_p_i_f_f_s_logger.html#a8d82d01f694528becba720e0612dc48d", null ],
     [ "rowCount", "class_s_p_i_f_f_s_logger.html#ac539407d1bfebe9443393ea2e4047e29", null ],
+    [ "rowCount", "class_s_p_i_f_f_s_logger.html#a7b59fa85e65ec2ca2fa2b26f22d4e936", null ],
     [ "write", "class_s_p_i_f_f_s_logger.html#a2e914dd1884de9900288564a41bc55a4", null ],
     [ "_curPath", "class_s_p_i_f_f_s_logger.html#a7f79553c53c7b5b6c87aaaa104d5a1e3", null ],
     [ "_daysToKeep", "class_s_p_i_f_f_s_logger.html#a8feb62f012879aca79d600cf217c2098", null ],

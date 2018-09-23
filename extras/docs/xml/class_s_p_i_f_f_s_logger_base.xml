@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="class_s_p_i_f_f_s_logger_base" kind="class" language="C++" prot="public">
     <compoundname>SPIFFSLoggerBase</compoundname>
     <derivedcompoundref refid="class_s_p_i_f_f_s_logger" prot="public" virt="non-virtual">SPIFFSLogger&lt; T &gt;</derivedcompoundref>
@@ -112,7 +112,7 @@
 <para>Should be called after initializing SPIFFS and before before any other method. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/SPIFFSLoggerBase.h" line="35" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="12" bodyend="15"/>
+        <location file="src/SPIFFSLoggerBase.h" line="35" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="30" bodyend="33"/>
       </memberdef>
       <memberdef kind="function" id="class_s_p_i_f_f_s_logger_base_1a22fdd2b540717853ae403edbc0ed1b7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -125,7 +125,7 @@
 <para>Should be called as often as possible, i.e. in loop(). </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/SPIFFSLoggerBase.h" line="41" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="17" bodyend="34"/>
+        <location file="src/SPIFFSLoggerBase.h" line="41" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="35" bodyend="52"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-func">
@@ -152,7 +152,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/SPIFFSLoggerBase.h" line="52" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="6" bodyend="10"/>
+        <location file="src/SPIFFSLoggerBase.h" line="52" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="24" bodyend="28"/>
       </memberdef>
       <memberdef kind="function" id="class_s_p_i_f_f_s_logger_base_1abfba26125f8b32b4c8e2e3d29d65b31f" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -173,7 +173,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/SPIFFSLoggerBase.h" line="57" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="36" bodyend="48"/>
+        <location file="src/SPIFFSLoggerBase.h" line="57" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="54" bodyend="66"/>
       </memberdef>
       <memberdef kind="function" id="class_s_p_i_f_f_s_logger_base_1aa5679e47e144e591b5fa90fb31b65cbd" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -186,7 +186,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/SPIFFSLoggerBase.h" line="62" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="50" bodyend="53"/>
+        <location file="src/SPIFFSLoggerBase.h" line="62" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="68" bodyend="71"/>
       </memberdef>
       <memberdef kind="function" id="class_s_p_i_f_f_s_logger_base_1a2e9e45428e1ffbe989dd7679c5def4fe" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -199,7 +199,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/SPIFFSLoggerBase.h" line="67" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="55" bodyend="69"/>
+        <location file="src/SPIFFSLoggerBase.h" line="67" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="73" bodyend="87"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-static-func">
@@ -218,7 +218,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/SPIFFSLoggerBase.h" line="72" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="71" bodyend="87"/>
+        <location file="src/SPIFFSLoggerBase.h" line="72" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="89" bodyend="107"/>
       </memberdef>
       <memberdef kind="function" id="class_s_p_i_f_f_s_logger_base_1ab520631b16a4bd22e55cada2781287a8" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>time_t</type>
@@ -235,7 +235,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/SPIFFSLoggerBase.h" line="77" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="89" bodyend="104"/>
+        <location file="src/SPIFFSLoggerBase.h" line="77" column="1" bodyfile="src/SPIFFSLoggerBase.cpp" bodystart="109" bodyend="124"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
