@@ -108,6 +108,7 @@ Serial.printf("TS: %d, T: %.2f, H: %.2f, %u\n",
 Or the last row:
 
 ```cpp
+const time_t now = time(nullptr);
 const size_t rowCount = logger.rowCount(now);
 logger.readRows(&data, now, rowCount - 1, 1);
 ```
@@ -125,15 +126,16 @@ Retrieving data from the last 20 minutes:
 
 ```cpp
 SPIFFSLogData<EnvData> data[25];
-size_t count = logger.readRowsBetween(&data, // output
+size_t count = logger.readRowsBetween(
+                       &data,                // output
                        now - (60 * 20),      // time start (inclusive)
                        now,                  // time end (inclusive)
                        0,                    // start index within results
-                       25                    // max number of rows to fetch (size your output buffer accordingly!)
+                       25                    // max number of rows to fetch
 );
 
 for (int i=0; i<count; i++) {
-	Serial.printf("TS: %d, T: %.2f, H: %.2f, %u\n",
+    Serial.printf("TS: %d, T: %.2f, H: %.2f, %u\n",
                   data[i].timestampUTC,
                   data[i].data.temperature,
                   data[i].data.humidity,
