@@ -152,16 +152,16 @@ size_t SPIFFSLogger<T>::readRowsBetween(SPIFFSLogData<T> *output, time_t fromTim
         size_t idx = 0;
         File f = logDir.openFile("r");
         const size_t rowCount = this->rowCount(f);
+        time_t currentTime;
 
         while (idx < rowCount && copied < maxCount)
         {
-            struct SPIFFSLogData<T> data;
             f.seek(idx * sizeof(SPIFFSLogData<T>));
-            f.read((uint8_t *)&data, sizeof(time_t)); // read only the timestamp
+            f.read((uint8_t *)&currentTime, sizeof(time_t)); // read only the timestamp
 
-            if (data.timestampUTC > toTime)
+            if (currentTime > toTime)
                 break; // we got all we needed from this file
-            if (data.timestampUTC >= fromTime)
+            if (currentTime >= fromTime)
             { // match
                 hits++;
                 if (hits > startIdx)
@@ -169,7 +169,7 @@ size_t SPIFFSLogger<T>::readRowsBetween(SPIFFSLogData<T> *output, time_t fromTim
                     SPIFFSLogData<T>* curOutput = output + (copied * sizeof(SPIFFSLogData<T>));
                     
                     // copy the timestamp
-                    memcpy(curOutput, &data, sizeof(time_t));
+                    memcpy(curOutput, &currentTime, sizeof(time_t));
 
                     // read the remaining data directly
                     f.read((uint8_t*)curOutput + sizeof(time_t), sizeof(SPIFFSLogData<T>) - sizeof(time_t));
