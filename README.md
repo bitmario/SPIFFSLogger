@@ -82,6 +82,18 @@ void setup() {
 }
 ```
 
+#### Running required operations
+
+You must call `logger.process()` in your loop to run the required operations (file updates and rotation). E.g.:
+
+```cpp
+void loop() {
+    // your code is here
+
+    logger.process();
+}
+```
+
 #### Writing data
 
 Simply call `logger.write()` and the data will be logged with the current timestamp:
