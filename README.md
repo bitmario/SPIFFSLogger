@@ -1,181 +1,145 @@
 # SPIFFSLogger
 A minimal library for binary data logging in ESP8266 systems.
 
-Makes it easy to read, write and keep logs of relevant data, such as sensor readings in an efficient way,
-by storing data in raw, binary format along with a time_t. Depending on the data, this should offer about
-50% space savings vs. saving the same data in CSV. Daily log file rotation is performed automatically.
+## Features
 
-See the [example](examples/Basic/Basic.ino) and documentation below.
+* Easy to use
+* Stores data in binary along with a UTC timestamp
+* Results in about 50% space spavings when compared to logging the same data in CSV
+* Splits data into daily files, allowing for efficient search
+* Automatically rotates files, deleting the ones that exceed the specified age
+* Uses built-in ESP/newlib time functions
 
 ## Installing
-Clone the library into your libraries folder, or download the zip and extract it manually.
 
-## Documentation
+1. Download the [latest release](https://github.com/bitmario/SPIFFSLogger/releases/latest)
+2. Extract it into your libraries folder
+3. Rename the folder from `SPIFFSLogger-x.x.x` to `SPIFFSLogger`
 
- Members                        | Descriptions                                
---------------------------------|---------------------------------------------
-`class `[`SPIFFSLogger`](#class_s_p_i_f_f_s_logger) | Minimal class template for binary data logging in ESP8266 SPIFFS.
-`struct `[`SPIFFSLogData`](#struct_s_p_i_f_f_s_log_data) | Represents a data element as stored in SPIFFS, along with the creation timestamp.
+## Getting started
 
-## class `SPIFFSLogger<T>` 
+See the summary below and try the [example](examples/Basic/Basic.ino). You may also want to take a peek at our [documentation](extras/docs/api.md).
 
+### Required includes
+
+```cpp
+#include <SPIFFSLogger.h>
 ```
-class SPIFFSLogger
-  : public SPIFFSLoggerBase
-```  
 
-Minimal class template for binary data logging in ESP8266 SPIFFS.
+### The SPIFFSLogData<T\> struct
 
-Makes it easy to read, write and keep logs of relevant data, such as sensor readings in an efficient way, by storing data in raw, binary format along with a time_t. One file is created per UTC day to store the respective data, and deleted once it has reached the defined maximum age.
+This struct represents the data as stored in SPIFFS (including the timestamp). It is returned in any logger read operations.
 
-#### Parameters
-* `T` type to store, e.g. a struct.
+Definition:
 
-### Summary
+```cpp
+template <class T>
+struct SPIFFSLogData
+{
+    time_t timestampUTC; /** creation time in UTC */
+    T data;              /** data of type T */
+};
+```
 
- Members                        | Descriptions                                
---------------------------------|---------------------------------------------
-`public  `[`SPIFFSLogger`](#class_s_p_i_f_f_s_logger_1afa8152a5d5d29fedbb04265cb4589359)`(const char * directory,uint16_t daysToKeep,uint16_t processInterval)` | Default constructor for [SPIFFSLogger](#class_s_p_i_f_f_s_logger).
-`public size_t `[`write`](#class_s_p_i_f_f_s_logger_1a2e914dd1884de9900288564a41bc55a4)`(const T & value)` | Write the specified value to the end of the current log file, with the current timestamp.
-`public size_t `[`readRows`](#class_s_p_i_f_f_s_logger_1aeceb2db3a41feb387e874f247657e19c)`(`[`SPIFFSLogData`](#struct_s_p_i_f_f_s_log_data)`< T > * output,time_t date,size_t startIdx,size_t maxCount)` | Read data from a daily logfile into a buffer.
-`public size_t `[`readRowsBetween`](#class_s_p_i_f_f_s_logger_1a8d82d01f694528becba720e0612dc48d)`(`[`SPIFFSLogData`](#struct_s_p_i_f_f_s_log_data)`< T > * output,time_t fromTime,time_t toTime,size_t startIdx,size_t maxCount)` | 
-`public size_t `[`rowCount`](#class_s_p_i_f_f_s_logger_1ac539407d1bfebe9443393ea2e4047e29)`(time_t date)` | Get the number of entries for the specified date.
-`public void `[`init`](#class_s_p_i_f_f_s_logger_base_1ad2270960852a999b0340fa4eab50f063)`()` | Initialize the logger.
-`public void `[`process`](#class_s_p_i_f_f_s_logger_base_1a22fdd2b540717853ae403edbc0ed1b7f)`()` | Process the file rotation and other required operations according to the defined processInterval.
-`protected time_t `[`_today`](#class_s_p_i_f_f_s_logger_base_1a77a967ae68a680dea5a647200ba49815) | current date, set in the last processing run
-`protected unsigned long `[`_lastProcess`](#class_s_p_i_f_f_s_logger_base_1ac1b33a4c97b2a45b2b178a261ebbb12c) | last processing millis()
-`protected const uint16_t `[`_processInterval`](#class_s_p_i_f_f_s_logger_base_1a517fa4d3854283ba7b2dba9bf0d09c84) | ms between processing runs
-`protected const uint16_t `[`_daysToKeep`](#class_s_p_i_f_f_s_logger_base_1a8feb62f012879aca79d600cf217c2098) | number of days to keep logs for
-`protected bool `[`_processNow`](#class_s_p_i_f_f_s_logger_base_1a978f0a636ce4d7a7f1640df124cc25ff) | force processing now, even if the processing interval hasn't passed
-`protected char `[`_directory`](#class_s_p_i_f_f_s_logger_base_1a829da5d8bf3d83ed24e608bb60fc623c) | base directory for log files
-`protected char `[`_curPath`](#class_s_p_i_f_f_s_logger_base_1a7f79553c53c7b5b6c87aaaa104d5a1e3) | path for today's file
-`protected void `[`_pathFromDate`](#class_s_p_i_f_f_s_logger_base_1abfba26125f8b32b4c8e2e3d29d65b31f)`(char * output,time_t date)` | Converts a time_t to that day's file path.
-`protected void `[`_updateCurPath`](#class_s_p_i_f_f_s_logger_base_1aa5679e47e144e591b5fa90fb31b65cbd)`()` | Updates the current path to match today's date.
-`protected void `[`_runRotation`](#class_s_p_i_f_f_s_logger_base_1a2e9e45428e1ffbe989dd7679c5def4fe)`()` | Deletes files older than the defined age limit.
+### The SPIFFSLogger<T\> class 
 
-### Members
+This is the core of the library. You can create your logger like so:
 
-#### `public  `[`SPIFFSLogger`](#class_s_p_i_f_f_s_logger_1afa8152a5d5d29fedbb04265cb4589359)`(const char * directory,uint16_t daysToKeep,uint16_t processInterval)` 
+```cpp
+// store ints, saving files in /log/ and keeping today + 7 days of history
+SPIFFSLogger<int> logger("/log", 7);
+```
 
-Default constructor for [SPIFFSLogger](#class_s_p_i_f_f_s_logger).
+We can also store a struct (which is probably more useful!):
 
-#### Parameters
-* `directory` char array with the base directory where files will be stored. Should not include trailing slash and should be 20 characters or less. 
+```cpp
+struct EnvData {
+    float temperature;
+    float humidity;
+    uint16_t pressure;
+};
 
-* `daysToKeep` number of days to keep in flash. Once files are past this age, they are deleted. 
+SPIFFSLogger<EnvData> logger("/log", 7);
+```
 
-* `processInterval` milliseconds between file directory updates and file rotation.
+#### Initializing the logger
 
-#### `public size_t `[`write`](#class_s_p_i_f_f_s_logger_1a2e914dd1884de9900288564a41bc55a4)`(const T & value)` 
+This library uses the ESP8266 SPIFFS and built-in time functions so you must initialize those components and then call `logger.init()`.
 
-Write the specified value to the end of the current log file, with the current timestamp.
+Your `setup()` should look something like this:
 
-#### Parameters
-* `value` the value to write
+```cpp
+void setup() {
+    // configure time however you like, we use NTP here
+    wifiSetup(); // ommitted for brevity
+    configTime(0, 0, "pool.ntp.org");
+    
+    // initialize SPIFFS
+    SPIFFS.begin();
+    
+    // initialize our logger
+    logger.init();
+}
+```
 
-#### `public size_t `[`readRows`](#class_s_p_i_f_f_s_logger_1aeceb2db3a41feb387e874f247657e19c)`(`[`SPIFFSLogData`](#struct_s_p_i_f_f_s_log_data)`< T > * output,time_t date,size_t startIdx,size_t maxCount)` 
+#### Writing data
 
-Read data from a daily logfile into a buffer.
+Simply call `logger.write()` and the data will be logged with the current timestamp:
 
-#### Parameters
-* `output` buffer where data will be written 
+```cpp
+struct EnvData data = { 23.54, 50.67, 1020 };
+logger.write(data);
+```
 
-* `date` time_t representing the date of the file 
+#### Reading data
 
-* `startIdx` 0-based index of the entries to read (row number) 
+Reading the first row of today's logfile:
 
-* `maxCount` maximum number of entries to read 
+```cpp
+SPIFFSLogData<EnvData> data;
+logger.readRows(&data, time(nullptr), 0, 1);
+Serial.printf("TS: %d, T: %.2f, H: %.2f, %u\n",
+              data.timestampUTC,
+              data.data.temperature,
+              data.data.humidity,
+              data.data.pressure);
+```
 
-#### Returns
-number of entries read
+Or the last row:
 
-#### `public size_t `[`readRowsBetween`](#class_s_p_i_f_f_s_logger_1a8d82d01f694528becba720e0612dc48d)`(`[`SPIFFSLogData`](#struct_s_p_i_f_f_s_log_data)`< T > * output,time_t fromTime,time_t toTime,size_t startIdx,size_t maxCount)` 
+```cpp
+const size_t rowCount = logger.rowCount(now);
+logger.readRows(&data, now, rowCount - 1, 1);
+```
 
-#### `public size_t `[`rowCount`](#class_s_p_i_f_f_s_logger_1ac539407d1bfebe9443393ea2e4047e29)`(time_t date)` 
+Or 25 rows starting at the 50th:
 
-Get the number of entries for the specified date.
+```cpp
+SPIFFSLogData<EnvData> data[25];
+logger.readRows(data, time(nullptr), 49, 25);
+```
 
-#### Parameters
-* `date` a time_t representing the day to check 
+#### Filtering data
 
-#### Returns
-number of entries
+Retrieving data from the last 20 minutes:
 
-#### `public void `[`init`](#class_s_p_i_f_f_s_logger_base_1ad2270960852a999b0340fa4eab50f063)`()` 
+```cpp
+SPIFFSLogData<EnvData> data[25];
+size_t count = logger.readRowsBetween(&data, // output
+                       now - (60 * 20),      // time start (inclusive)
+                       now,                  // time end (inclusive)
+                       0,                    // start index within results
+                       25                    // max number of rows to fetch (size your output buffer accordingly!)
+);
 
-Initialize the logger.
-
-Should be called after initializing SPIFFS and before before any other method.
-
-#### `public void `[`process`](#class_s_p_i_f_f_s_logger_base_1a22fdd2b540717853ae403edbc0ed1b7f)`()` 
-
-Process the file rotation and other required operations according to the defined processInterval.
-
-Should be called as often as possible, i.e. in loop().
-
-#### `protected time_t `[`_today`](#class_s_p_i_f_f_s_logger_base_1a77a967ae68a680dea5a647200ba49815) 
-
-current date, set in the last processing run
-
-#### `protected unsigned long `[`_lastProcess`](#class_s_p_i_f_f_s_logger_base_1ac1b33a4c97b2a45b2b178a261ebbb12c) 
-
-last processing millis()
-
-#### `protected const uint16_t `[`_processInterval`](#class_s_p_i_f_f_s_logger_base_1a517fa4d3854283ba7b2dba9bf0d09c84) 
-
-ms between processing runs
-
-#### `protected const uint16_t `[`_daysToKeep`](#class_s_p_i_f_f_s_logger_base_1a8feb62f012879aca79d600cf217c2098) 
-
-number of days to keep logs for
-
-#### `protected bool `[`_processNow`](#class_s_p_i_f_f_s_logger_base_1a978f0a636ce4d7a7f1640df124cc25ff) 
-
-force processing now, even if the processing interval hasn't passed
-
-#### `protected char `[`_directory`](#class_s_p_i_f_f_s_logger_base_1a829da5d8bf3d83ed24e608bb60fc623c) 
-
-base directory for log files
-
-#### `protected char `[`_curPath`](#class_s_p_i_f_f_s_logger_base_1a7f79553c53c7b5b6c87aaaa104d5a1e3) 
-
-path for today's file
-
-#### `protected void `[`_pathFromDate`](#class_s_p_i_f_f_s_logger_base_1abfba26125f8b32b4c8e2e3d29d65b31f)`(char * output,time_t date)` 
-
-Converts a time_t to that day's file path.
-
-#### `protected void `[`_updateCurPath`](#class_s_p_i_f_f_s_logger_base_1aa5679e47e144e591b5fa90fb31b65cbd)`()` 
-
-Updates the current path to match today's date.
-
-#### `protected void `[`_runRotation`](#class_s_p_i_f_f_s_logger_base_1a2e9e45428e1ffbe989dd7679c5def4fe)`()` 
-
-Deletes files older than the defined age limit.
-
-## struct `SPIFFSLogData<T>` 
-
-Represents a data element as stored in SPIFFS, along with the creation timestamp.
-
-#### Parameters
-* `T` type to store, e.g. a struct.
-
-### Summary
-
- Members                        | Descriptions                                
---------------------------------|---------------------------------------------
-`public time_t `[`timestampUTC`](#struct_s_p_i_f_f_s_log_data_1a692b3adc90780d9388d6833d2170400c) | creation time in UTC
-`public T `[`data`](#struct_s_p_i_f_f_s_log_data_1a071121efdc7f6d95adc4dcdf736a84ec) | data of type T
-
-### Members
-
-#### `public time_t `[`timestampUTC`](#struct_s_p_i_f_f_s_log_data_1a692b3adc90780d9388d6833d2170400c) 
-
-creation time in UTC
-
-#### `public T `[`data`](#struct_s_p_i_f_f_s_log_data_1a071121efdc7f6d95adc4dcdf736a84ec) 
-
-data of type T
+for (int i=0; i<count; i++) {
+	Serial.printf("TS: %d, T: %.2f, H: %.2f, %u\n",
+                  data[i].timestampUTC,
+                  data[i].data.temperature,
+                  data[i].data.humidity,
+                  data[i].data.pressure);
+}
+```
 
 ## License
 Licensed under the GNU LGPLv3, see the [LICENSE](LICENSE) file.
