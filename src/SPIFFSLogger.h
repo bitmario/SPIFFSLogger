@@ -166,7 +166,7 @@ size_t SPIFFSLogger<T>::readRowsBetween(SPIFFSLogData<T> *output, time_t fromTim
                 hits++;
                 if (hits > startIdx)
                 {
-                    SPIFFSLogData<T> *curOutput = output + (copied * sizeof(SPIFFSLogData<T>));
+                    SPIFFSLogData<T> *curOutput = output + copied;
 
                     // copy the timestamp
                     memcpy(curOutput, &currentTime, sizeof(time_t));
